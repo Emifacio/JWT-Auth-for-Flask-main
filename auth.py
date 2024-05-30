@@ -89,5 +89,5 @@ def logout_user():
 
     token_b.save()
 
-    return jsonify({"message": f"{token_type} token revoked successfully"}) , 200
+    return jsonify({"message":"Loged Out Successfully"}) , 200
 
