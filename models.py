@@ -15,7 +15,8 @@ class User(db.Model):
     username = db.Column(db.String(), nullable=False)
     email = db.Column(db.String(), nullable=False)
     password = db.Column(db.Text())
-    events = db.relationship('Event', backref='user', lazy=True)
+    events = db.relationship('Event', back_populates='user', lazy=True)
+    
 
     def __repr__(self):
         return f"<User {self.username}>"
@@ -64,7 +65,8 @@ class Event(db.Model):
     location = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.String, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship('User', back_populates='events', lazy=True)
     
-def json(self):
-    return {'id': self.id,'name': self.name, 'date': self.date, 'location': self.location, 'description': self.description, 'user_id': self.user_id}
+    def json(self):
+        return {'id': self.id,'name': self.name, 'date': self.date, 'location': self.location, 'description': self.description, 'user_id': self.user_id}
   
